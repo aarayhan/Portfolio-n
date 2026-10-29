@@ -60,21 +60,21 @@ export const seed: ContentBundle = {
         "availability": "Terbuka untuk PKL mulai Maret 2027 dan freelance",
         "intro": "Saya bangun web dan sistem yang dipakai orang setiap hari, dari landing page sampai aplikasi manajemen.",
         "about": "Saya merapikan pekerjaan manual jadi sistem web yang jalan.",
-        "about_detail": "Fokus saya di web development dengan Laravel dan Filament. Proyek utama saya GrandKos, sistem yang dipakai keluarga saya untuk menjalankan kos, dan MyKos.id, versi SaaS-nya untuk pemilik kos lain. Sekarang saya siswa Rekayasa Perangkat Lunak di SMK IDN Boarding School dan sedang mencari tempat PKL.",
+        "about_detail": "Fokus saya di web development dengan Laravel dan Filament. Proyek utama saya GrandKos, sistem yang dipakai keluarga saya untuk menjalankan kos, dan MayKos, versi SaaS-nya untuk pemilik kos lain. Sekarang saya siswa Rekayasa Perangkat Lunak di SMK IDN Boarding School dan sedang mencari tempat PKL.",
         "cv_url": "/cv/CV-Muhammad-Yahya-Ar-Rayhan-ID.pdf"
       },
       "en": {
         "availability": "Open to internships from March 2027 and freelance work",
         "intro": "I build websites and systems people use every day, from landing pages to management apps.",
         "about": "I turn manual work into web systems that actually run.",
-        "about_detail": "My focus is web development with Laravel and Filament. My main projects are GrandKos, the system my family uses to run our boarding house, and MyKos.id, its SaaS version for other owners. I am a Software Engineering student at SMK IDN Boarding School, looking for an internship.",
+        "about_detail": "My focus is web development with Laravel and Filament. My main projects are GrandKos, the system my family uses to run our boarding house, and MayKos, its SaaS version for other owners. I am a Software Engineering student at SMK IDN Boarding School, looking for an internship.",
         "cv_url": "/cv/CV-Muhammad-Yahya-Ar-Rayhan-EN.pdf"
       }
     }
   },
   "projects": [
     {
-      "slug": "mykos-id",
+      "slug": "maykos",
       "sort": 1,
       "published": true,
       "stack": [
@@ -90,22 +90,22 @@ export const seed: ContentBundle = {
       "repo_url": null,
       "i18n": {
         "en": {
-          "title": "MyKos.id",
+          "title": "MayKos",
           "summary": "A boarding house management SaaS where every owner gets a workspace isolated at database level.",
           "problem": "Small boarding house owners track rooms, tenants and payments in notebooks and chat. Apps that exist are either single-owner or expensive.",
           "solution": "A multi-tenant version of GrandKos. Each owner is an organization, and PostgreSQL Row Level Security makes sure the app can only ever read that organization's rows.",
           "result": "241 automated tests as of Sep 2026. Preparing a free beta for 15 to 20 owners.",
-          "role": "Co-founder, full-stack developer",
-          "body": "## Background\nMyKos.id grew out of GrandKos, the system my family uses for our own boarding house. Other owners wanted the same thing, so it became a SaaS. It is a separate codebase and database: GrandKos is never touched or used as the first tenant.\n\n## Architecture\n- **Tenancy in the database, not only in code.** Every table with tenant data has a Row Level Security policy. A query without an organization set returns zero rows, not an error and not every row.\n- **Two database roles.** `maykos_app` serves web requests and can only read and write, under RLS. `maykos_system` runs migrations and system jobs, and the app role can never switch to it.\n- **Two Filament panels**: one for owners and staff, one read-only panel for the platform team.\n\n## Features\n- Rooms, residents, invoices, deposits and a front desk view.\n- Resident sign-up form with encrypted ID numbers and ID photos in private storage. An owner cannot download another owner's files even with the exact path.\n- WhatsApp payment reminders three days and one day before the due date, sent from each owner's own WhatsApp number, with a daily quota.\n- A public invoice page that never renders sensitive columns.\n\n## Testing\nEach security rule has a test, and each phase has at least one negative test: the safeguard is switched off, the test must fail, then the safeguard comes back. Example: a reminder job for one owner never uses another owner's WhatsApp instance.\n\n| Phase | What it covered | Tests |\n|---|---|---|\n| 4C | Resident WhatsApp numbers | 161 |\n| 5E | Payment reminders | 197 |\n| UX-1 | Owner panel wording and labels | 219 |\n| 5E patch 1 | Reminders sent at most once | 241 |\n\n## Next\nA free beta for 15 to 20 owners on a home server, then a move to a VPS before the first paid plan. Next feature: an AI assistant that owners command through WhatsApp, with the web dashboard kept alongside it.\n\n> The repository is private because the product is still in development."
+          "role": "Founder, full-stack developer",
+          "body": "## Background\nMayKos (maykos.id) grew out of GrandKos, the system my family uses for our own boarding house. Other owners wanted the same thing, so it became a SaaS. It is a separate codebase and database: GrandKos is never touched or used as the first tenant.\n\n## Architecture\n- **Tenancy in the database, not only in code.** Every table with tenant data has a Row Level Security policy. A query without an organization set returns zero rows, not an error and not every row.\n- **Two database roles.** `maykos_app` serves web requests and can only read and write, under RLS. `maykos_system` runs migrations and system jobs, and the app role can never switch to it.\n- **Two Filament panels**: one for owners and staff, one read-only panel for the platform team.\n\n## Features\n- Rooms, residents, invoices, deposits and a front desk view.\n- Resident sign-up form with encrypted ID numbers and ID photos in private storage. An owner cannot download another owner's files even with the exact path.\n- WhatsApp payment reminders three days and one day before the due date, sent from each owner's own WhatsApp number, with a daily quota.\n- A public invoice page that never renders sensitive columns.\n\n## Testing\nEach security rule has a test, and each phase has at least one negative test: the safeguard is switched off, the test must fail, then the safeguard comes back. Example: a reminder job for one owner never uses another owner's WhatsApp instance.\n\n| Phase | What it covered | Tests |\n|---|---|---|\n| 4C | Resident WhatsApp numbers | 161 |\n| 5E | Payment reminders | 197 |\n| UX-1 | Owner panel wording and labels | 219 |\n| 5E patch 1 | Reminders sent at most once | 241 |\n\n## Next\nA free beta for 15 to 20 owners on a home server, then a move to a VPS before the first paid plan. Next feature: an AI assistant that owners command through WhatsApp, with the web dashboard kept alongside it.\n\n> The repository is private because the product is still in development."
         },
         "id": {
-          "title": "MyKos.id",
+          "title": "MayKos",
           "summary": "SaaS manajemen kos, setiap pemilik punya ruang kerja yang dipisah di level database.",
           "problem": "Pemilik kos kecil mencatat kamar, penyewa, dan pembayaran di buku dan chat. Aplikasi yang ada hanya untuk satu pemilik atau mahal.",
           "solution": "Versi multi-tenant dari GrandKos. Setiap pemilik adalah satu organisasi, dan PostgreSQL Row Level Security memastikan aplikasi hanya bisa membaca baris milik organisasi itu.",
           "result": "241 test otomatis per September 2026. Sedang menyiapkan beta gratis untuk 15 sampai 20 pemilik.",
-          "role": "Co-founder, full-stack developer",
-          "body": "## Latar belakang\nMyKos.id berawal dari GrandKos, sistem yang dipakai keluarga saya untuk kos kami sendiri. Pemilik kos lain ingin hal yang sama, jadi sistemnya dijadikan SaaS. Kode dan databasenya terpisah: GrandKos tidak pernah disentuh atau dijadikan tenant pertama.\n\n## Arsitektur\n- **Pemisahan data di database, bukan hanya di kode.** Setiap tabel berisi data tenant punya aturan Row Level Security. Query tanpa organisasi yang diset mengembalikan nol baris, bukan error dan bukan semua baris.\n- **Dua role database.** `maykos_app` melayani request web dan hanya bisa baca tulis di bawah RLS. `maykos_system` menjalankan migrasi dan job sistem, dan role aplikasi tidak pernah bisa pindah ke role itu.\n- **Dua panel Filament**: satu untuk pemilik dan staf, satu panel baca saja untuk tim platform.\n\n## Fitur\n- Kamar, penyewa, tagihan, uang jaminan, dan halaman frontdesk.\n- Form pendaftaran penyewa dengan NIK terenkripsi dan foto KTP di storage privat. Pemilik tidak bisa mengunduh file pemilik lain walaupun tahu path-nya.\n- Pengingat tagihan WhatsApp H-3 dan H-1 dari nomor WhatsApp masing-masing pemilik, dengan kuota harian.\n- Halaman tagihan publik yang tidak pernah menampilkan kolom sensitif.\n\n## Pengujian\nSetiap aturan keamanan punya test, dan setiap fase punya minimal satu test negatif: pengaman dimatikan, test harus gagal, lalu pengaman dikembalikan. Contoh: job pengingat milik satu pemilik tidak pernah memakai instance WhatsApp pemilik lain.\n\n| Fase | Isi | Test |\n|---|---|---|\n| 4C | Nomor WhatsApp penyewa | 161 |\n| 5E | Pengingat tagihan | 197 |\n| UX-1 | Bahasa dan label panel pemilik | 219 |\n| 5E patch 1 | Pengingat terkirim paling banyak sekali | 241 |\n\n## Berikutnya\nBeta gratis untuk 15 sampai 20 pemilik di server rumah, lalu pindah ke VPS sebelum paket berbayar pertama. Fitur berikutnya: asisten AI yang diperintah pemilik lewat WhatsApp, dengan dashboard web tetap tersedia.\n\n> Repository-nya privat karena produk masih dalam pengembangan."
+          "role": "Founder, full-stack developer",
+          "body": "## Latar belakang\nMayKos (maykos.id) berawal dari GrandKos, sistem yang dipakai keluarga saya untuk kos kami sendiri. Pemilik kos lain ingin hal yang sama, jadi sistemnya dijadikan SaaS. Kode dan databasenya terpisah: GrandKos tidak pernah disentuh atau dijadikan tenant pertama.\n\n## Arsitektur\n- **Pemisahan data di database, bukan hanya di kode.** Setiap tabel berisi data tenant punya aturan Row Level Security. Query tanpa organisasi yang diset mengembalikan nol baris, bukan error dan bukan semua baris.\n- **Dua role database.** `maykos_app` melayani request web dan hanya bisa baca tulis di bawah RLS. `maykos_system` menjalankan migrasi dan job sistem, dan role aplikasi tidak pernah bisa pindah ke role itu.\n- **Dua panel Filament**: satu untuk pemilik dan staf, satu panel baca saja untuk tim platform.\n\n## Fitur\n- Kamar, penyewa, tagihan, uang jaminan, dan halaman frontdesk.\n- Form pendaftaran penyewa dengan NIK terenkripsi dan foto KTP di storage privat. Pemilik tidak bisa mengunduh file pemilik lain walaupun tahu path-nya.\n- Pengingat tagihan WhatsApp H-3 dan H-1 dari nomor WhatsApp masing-masing pemilik, dengan kuota harian.\n- Halaman tagihan publik yang tidak pernah menampilkan kolom sensitif.\n\n## Pengujian\nSetiap aturan keamanan punya test, dan setiap fase punya minimal satu test negatif: pengaman dimatikan, test harus gagal, lalu pengaman dikembalikan. Contoh: job pengingat milik satu pemilik tidak pernah memakai instance WhatsApp pemilik lain.\n\n| Fase | Isi | Test |\n|---|---|---|\n| 4C | Nomor WhatsApp penyewa | 161 |\n| 5E | Pengingat tagihan | 197 |\n| UX-1 | Bahasa dan label panel pemilik | 219 |\n| 5E patch 1 | Pengingat terkirim paling banyak sekali | 241 |\n\n## Berikutnya\nBeta gratis untuk 15 sampai 20 pemilik di server rumah, lalu pindah ke VPS sebelum paket berbayar pertama. Fitur berikutnya: asisten AI yang diperintah pemilik lewat WhatsApp, dengan dashboard web tetap tersedia.\n\n> Repository-nya privat karena produk masih dalam pengembangan."
         }
       },
       "id": "b5e32027-6c97-5bac-a271-d489b9077ba9"
@@ -472,14 +472,14 @@ export const seed: ContentBundle = {
       "i18n": {
         "en": {
           "period": "Sep 2026 to now",
-          "title": "Co-founder and developer",
-          "place": "MyKos.id",
+          "title": "Founder and developer",
+          "place": "MayKos",
           "description": "Building a boarding house management SaaS on Laravel, Filament and PostgreSQL."
         },
         "id": {
           "period": "Sep 2026 sampai sekarang",
-          "title": "Co-founder dan developer",
-          "place": "MyKos.id",
+          "title": "Founder dan developer",
+          "place": "MayKos",
           "description": "Membangun SaaS manajemen kos dengan Laravel, Filament, dan PostgreSQL."
         }
       }

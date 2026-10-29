@@ -2,6 +2,12 @@
 
 Terbaru di atas. Format: tanggal, perubahan.
 
+## 2026-10-29 (MayKos)
+- Nama proyek MyKos.id jadi MayKos (domain maykos.id), slug /proyek/maykos. Peran jadi Founder, bukan co-founder (koreksi Raey).
+- `supabase/update-2026-10-29b.sql` untuk database yang sudah menjalankan update pertama. CV PDF dan dokumen CV ikut diperbarui.
+- Favicon "AR." (lingkaran hitam, huruf krem, titik oranye) di `src/app/favicon.ico`, `icon.png`, `apple-icon.png`.
+- Env Supabase dibersihkan otomatis (`src/lib/supabase/env.ts`); pesan login "Failed to fetch" diganti petunjuk alamat.
+
 ## 2026-10-29 (isi asli)
 - Isi asli dari 8 repo GitHub (aarayhan): MyKos.id, GrandKos, PayWind, PomeloO, Bibliotheca, Filmer, PadViolett, Trackify. Studi kasus dua bahasa. Repo MyKos.id dan GrandKos privat, tanpa link.
 - Pengalaman dan pendidikan dari CV, sertifikat dari CV (penerbit tiga sertifikat belum diketahui). Kelompok Mobile dihapus (Raey fokus web).
