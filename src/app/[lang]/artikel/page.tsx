@@ -22,6 +22,8 @@ export default async function ArticlesPage({ params }: Props) {
   if (!isLang(lang)) notFound();
   const t = dict[lang];
   const [articles, site] = await Promise.all([getArticles(lang), getSite(lang)]);
+  // Artikel disembunyikan atau belum ada yang tayang: halaman daftar tidak ada.
+  if (articles.length === 0) notFound();
 
   return (
     <>

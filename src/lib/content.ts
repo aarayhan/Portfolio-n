@@ -83,7 +83,7 @@ export async function getSite(lang: Lang) {
     whatsapp: p.whatsapp,
     // CV per bahasa (i18n.<lang>.cv_url), kalau kosong pakai CV umum.
     cvUrl: t.cv_url || p.cv_url,
-    hasArticles: articles.length > 0,
+    hasArticles: p.show_articles !== false && articles.length > 0,
     photo: p.photo_url,
     socials: p.socials,
     stats: p.stats.map((s) => ({ value: s.value, suffix: s.suffix, label: s.label[lang] })),
@@ -99,6 +99,7 @@ export async function getSite(lang: Lang) {
       year: c.year,
       id: c.credential_id,
       verifyUrl: c.verify_url,
+      fileUrl: c.file_url || null,
     })),
     skills: skillGroups.map((g) => ({ group: g.name, items: g.items })),
     services: services.map((s) => s.i18n[lang]),
@@ -129,7 +130,10 @@ export async function getProject(slug: string, lang: Lang) {
 }
 
 export async function getArticles(lang: Lang): Promise<Article[]> {
-  const { articles } = await getContent();
+  const { articles, profile } = await getContent();
+  // Saklar "Tampilkan artikel" di Profil. Kalau mati, semua artikel dianggap tidak ada:
+  // section, menu, command palette, dan halaman /artikel ikut hilang.
+  if (profile.show_articles === false) return [];
   return [...articles]
     .sort((a, b) => b.date.localeCompare(a.date))
     .map((a) => {

@@ -4,6 +4,7 @@ import { cn } from "@/lib/utils";
 import { getArticles, getProjects, getSite } from "@/lib/content";
 import type { Project, Article } from "@/content/types";
 import { TechIcon } from "@/components/tech-icon";
+import { CertificateCard } from "@/components/certificate-card";
 import { FadeUp, Parallax, PopItem, RevealOnScroll, Stagger, StaggerItem, WordsReveal } from "@/components/motion";
 import { CountUp, Magnetic } from "@/components/interactive";
 
@@ -383,20 +384,8 @@ export async function Certificates({ lang }: { lang: Lang }) {
       <SectionHead title={t.title} intro={t.intro} />
       <Stagger className="mt-14 grid gap-5 sm:grid-cols-2 lg:grid-cols-3" gap={0.1}>
         {site.certificates.map((c) => (
-          <StaggerItem key={c.title + c.id} lift className="flex flex-col rounded-2xl border border-line-dark p-6">
-            <p className="text-sm text-muted-dark">{[c.issuer, c.year].filter(Boolean).join(", ")}</p>
-            <h3 className="mt-3 font-display text-3xl font-bold uppercase leading-[0.95]">{c.title}</h3>
-            {c.id && <p className="mt-3 text-sm text-muted-dark">ID {c.id}</p>}
-            {c.verifyUrl && c.verifyUrl !== "#" && (
-              <a
-                href={c.verifyUrl}
-                target="_blank"
-                rel="noopener noreferrer"
-                className="mt-auto inline-flex items-center gap-1.5 pt-6 text-sm font-medium text-accent"
-              >
-                {t.verify} <ArrowUpRight className="size-4" aria-hidden />
-              </a>
-            )}
+          <StaggerItem key={c.title + c.id} lift>
+            <CertificateCard c={c} labels={t} />
           </StaggerItem>
         ))}
       </Stagger>

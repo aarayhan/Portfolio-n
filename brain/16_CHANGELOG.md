@@ -2,6 +2,14 @@
 
 Terbaru di atas. Format: tanggal, perubahan.
 
+## 2026-10-30 (saklar artikel)
+- Saklar "Tampilkan artikel" di dashboard Profil (kolom `profile.show_articles`, `supabase/update-2026-10-30.sql`). Mati: section, menu, palette, dan halaman /artikel hilang (404). Artikel tidak terhapus.
+- Per artikel tetap bisa draft/tayang lewat saklar "Tayang".
+
+## 2026-10-29 (penampil sertifikat)
+- Sertifikat bisa dilihat langsung di web: klik kartu membuka penampil (gambar atau PDF), tutup dengan Esc, tombol X, atau klik latar. Tombol "Buka di tab baru" untuk HP yang tidak bisa menampilkan PDF.
+- Kolom baru `certificates.file_url` (`supabase/update-2026-10-29c.sql`), field "File sertifikat" di dashboard.
+
 ## 2026-10-29 (MayKos)
 - Nama proyek MyKos.id jadi MayKos (domain maykos.id), slug /proyek/maykos. Peran jadi Founder, bukan co-founder (koreksi Raey).
 - `supabase/update-2026-10-29b.sql` untuk database yang sudah menjalankan update pertama. CV PDF dan dokumen CV ikut diperbarui.

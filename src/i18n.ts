@@ -66,8 +66,11 @@ const id = {
   about: { label: "Tentang saya", education: "Pendidikan", experience: "Pengalaman" },
   certificates: {
     title: "Sertifikat",
-    intro: "Bukti kompetensi yang bisa dicek langsung ke penerbitnya.",
+    intro: "Klik sertifikat untuk melihatnya langsung di sini.",
     verify: "Verifikasi",
+    view: "Lihat sertifikat",
+    close: "Tutup",
+    openNew: "Buka di tab baru",
   },
   skills: { title: "Keahlian", intro: "Bahasa, framework, dan alat yang saya pakai." },
   contact: {
@@ -157,8 +160,11 @@ const en: Dict = {
   about: { label: "About me", education: "Education", experience: "Experience" },
   certificates: {
     title: "Certificates",
-    intro: "Proof of skills you can verify directly with the issuer.",
+    intro: "Click a certificate to view it right here.",
     verify: "Verify",
+    view: "View certificate",
+    close: "Close",
+    openNew: "Open in new tab",
   },
   skills: { title: "Skills", intro: "Languages, frameworks, and tools I use." },
   contact: {

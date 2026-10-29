@@ -27,6 +27,7 @@ export type ProfileRow = {
   photo_url: string | null;
   socials: Social[];
   stats: Stat[];
+  show_articles?: boolean; // saklar tampil/sembunyikan semua artikel
   i18n: L<{ availability: string; intro: string; about: string; about_detail: string; cv_url?: string }>;
 };
 
@@ -71,6 +72,7 @@ export type CertificateRow = {
   year: string;
   credential_id: string;
   verify_url: string;
+  file_url?: string | null; // gambar atau PDF sertifikat, tampil di penampil
 };
 
 export type SkillGroupRow = { id: string; sort: number; name: string; items: string[] };

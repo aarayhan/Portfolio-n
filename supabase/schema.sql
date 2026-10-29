@@ -106,6 +106,10 @@ create table if not exists public.certificates (
   verify_url text not null default '',
   updated_at timestamptz not null default now()
 );
+-- Ditambah 30 Okt 2026: saklar tampil/sembunyikan semua artikel.
+alter table public.profile add column if not exists show_articles boolean not null default true;
+-- Ditambah 29 Okt 2026: file sertifikat (gambar atau PDF) untuk penampil di web.
+alter table public.certificates add column if not exists file_url text;
 
 create table if not exists public.skill_groups (
   id uuid primary key default gen_random_uuid(),
