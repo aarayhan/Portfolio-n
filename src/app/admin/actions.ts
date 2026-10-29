@@ -4,6 +4,7 @@ import { revalidatePath, updateTag } from "next/cache";
 import { cookies } from "next/headers";
 import { createServerClient } from "@supabase/ssr";
 import { CONTENT_TAG } from "@/lib/content";
+import { supabaseKey, supabaseUrl } from "@/lib/supabase/env";
 
 /*
   Dipanggil dashboard setelah menyimpan atau menghapus.
@@ -11,8 +12,8 @@ import { CONTENT_TAG } from "@/lib/content";
   Hanya admin yang login yang boleh menjalankannya.
 */
 export async function refreshSiteAction(): Promise<{ ok: true } | { ok: false; error: string }> {
-  const url = process.env.NEXT_PUBLIC_SUPABASE_URL;
-  const key = process.env.NEXT_PUBLIC_SUPABASE_PUBLISHABLE_KEY ?? process.env.NEXT_PUBLIC_SUPABASE_ANON_KEY;
+  const url = supabaseUrl;
+  const key = supabaseKey;
   if (!url || !key) return { ok: false, error: "Supabase belum disambungkan." };
 
   const store = await cookies();

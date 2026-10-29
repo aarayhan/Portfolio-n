@@ -5,6 +5,7 @@ import type { Article, Project } from "@/content/types";
 import type { ContentBundle } from "@/lib/content-types";
 import { seed } from "@/content/seed";
 import { parseMarkdown, readMinutes } from "@/lib/markdown";
+import { supabaseKey, supabaseUrl } from "@/lib/supabase/env";
 
 /*
   Satu pintu untuk semua isi web.
@@ -15,9 +16,9 @@ import { parseMarkdown, readMinutes } from "@/lib/markdown";
 
 export const CONTENT_TAG = "content";
 
-const url = process.env.NEXT_PUBLIC_SUPABASE_URL;
+const url = supabaseUrl;
 // Nama baru Supabase (PUBLISHABLE_KEY) atau nama lama (ANON_KEY), dua-duanya diterima.
-const key = process.env.NEXT_PUBLIC_SUPABASE_PUBLISHABLE_KEY ?? process.env.NEXT_PUBLIC_SUPABASE_ANON_KEY;
+const key = supabaseKey;
 export const usingDatabase = Boolean(url && key);
 
 async function loadFromDatabase(): Promise<ContentBundle> {

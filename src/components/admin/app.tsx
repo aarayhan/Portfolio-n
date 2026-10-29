@@ -7,6 +7,7 @@ import type { Lang } from "@/i18n";
 import { cn } from "@/lib/utils";
 import { slugify } from "@/components/blocks";
 import { getBrowserClient, supabaseReady } from "@/lib/supabase/browser";
+import { supabaseUrl } from "@/lib/supabase/env";
 import { refreshSiteAction } from "@/app/admin/actions";
 import { collections, type Collection, type Row } from "./schema";
 import { FieldRow, getAt, inputCls, isI18n, setAt } from "./editor";
@@ -98,6 +99,19 @@ function Centered({ children }: { children: React.ReactNode }) {
   return <main className="grid min-h-[100svh] place-items-center px-4 text-center">{children}</main>;
 }
 
+function loginError(msg: string) {
+  if (msg === "Invalid login credentials") return "Email atau password salah.";
+  // "Failed to fetch": browser tidak bisa menghubungi Supabase sama sekali. Hampir selalu alamatnya salah.
+  if (/failed to fetch|load failed|networkerror/i.test(msg)) {
+    let host = supabaseUrl;
+    try {
+      host = new URL(supabaseUrl).host;
+    } catch {}
+    return `Tidak bisa menghubungi Supabase di "${host}". Cek NEXT_PUBLIC_SUPABASE_URL (harus https://xxxx.supabase.co), lalu deploy ulang.`;
+  }
+  return msg;
+}
+
 function Login() {
   const supabase = getBrowserClient();
   const [email, setEmail] = useState("");
@@ -114,7 +128,7 @@ function Login() {
           setBusy(true);
           setErr("");
           const { error } = await supabase.auth.signInWithPassword({ email, password });
-          if (error) setErr(error.message === "Invalid login credentials" ? "Email atau password salah." : error.message);
+          if (error) setErr(loginError(error.message));
           setBusy(false);
         }}
       >
