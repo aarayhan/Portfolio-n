@@ -1,0 +1,145 @@
+@import "tailwindcss";
+
+/*
+  Palet tetap, tanpa toggle tema. Section gelap dan terang bergantian.
+  Ganti aksen cukup di --accent.
+*/
+:root {
+  --black: #050a0e;
+  --bone: #f2edea;
+  --accent: #ff5b14;
+  --muted-dark: #9aa2a9;   /* teks sekunder di latar gelap */
+  --muted-light: #5d6368;  /* teks sekunder di latar terang */
+  --line-dark: #1f262c;
+  --line-light: #d9d2ce;
+}
+
+@theme inline {
+  --color-black: var(--black);
+  --color-bone: var(--bone);
+  --color-accent: var(--accent);
+  --color-muted-dark: var(--muted-dark);
+  --color-muted-light: var(--muted-light);
+  --color-line-dark: var(--line-dark);
+  --color-line-light: var(--line-light);
+  --font-display: "Bebas Neue", Impact, sans-serif;
+  --font-sans: "Inter Variable", ui-sans-serif, system-ui, sans-serif;
+}
+
+html {
+  scroll-behavior: smooth;
+}
+
+body {
+  background: var(--black);
+  color: var(--bone);
+  font-family: var(--font-sans);
+  -webkit-font-smoothing: antialiased;
+}
+
+/* Bebas Neue hanya punya satu ketebalan. Tanpa ini, class font-black/bold membuat browser
+   menebalkan huruf secara palsu dan hasilnya buram. */
+.font-display,
+.loader-name {
+  font-synthesis: none;
+}
+
+:focus-visible {
+  outline: 2px solid currentColor;
+  outline-offset: 4px;
+}
+
+/* Kursor bawaan disembunyikan hanya saat kursor custom aktif (mouse, tanpa reduced motion). */
+html.has-custom-cursor,
+html.has-custom-cursor a,
+html.has-custom-cursor button {
+  cursor: none;
+}
+html.has-custom-cursor input,
+html.has-custom-cursor textarea {
+  cursor: text;
+}
+
+@media (prefers-reduced-motion: reduce) {
+  html {
+    scroll-behavior: auto;
+  }
+}
+
+/* ---------- Loader pembuka (src/components/loader.tsx) ---------- */
+/* Latar abu batu: ketiga warna lingkaran (oranye, hitam, krem) tetap terlihat di atasnya. */
+#loader {
+  position: fixed;
+  inset: 0;
+  z-index: 200;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  gap: 1.75rem;
+  padding: 1rem;
+  background: #464b4f;
+  color: var(--bone);
+  text-align: center;
+  transition: opacity 0.5s ease, visibility 0.5s;
+  /* Pengaman kalau JavaScript gagal: loader tetap hilang setelah 6 detik. */
+  animation: loader-safety 0s linear 6s forwards;
+}
+html.loader-skip #loader { display: none; }
+html.loader-done #loader { opacity: 0; visibility: hidden; pointer-events: none; }
+@keyframes loader-safety { to { opacity: 0; visibility: hidden; pointer-events: none; } }
+
+.loader-mark { width: min(220px, 60vw); height: auto; overflow: visible; }
+.loader-main {
+  transform-box: fill-box;
+  transform-origin: center;
+  animation: loader-main-color 4.2s infinite, loader-pulse 1.4s infinite ease-in-out;
+}
+.loader-orbit { transform-origin: 100px 60px; animation: loader-orbit 4.2s infinite; }
+.loader-small { animation: loader-move 1.4s infinite cubic-bezier(0.6, 0, 0.4, 1), loader-small-color 4.2s infinite; }
+
+/* Satu putaran = 3 fase x 1,4 detik. Tiap fase: kecil keluar, ganti warna saat terpisah, kembali. */
+@keyframes loader-move {
+  0%, 8% { transform: translateX(0); }
+  42%, 58% { transform: translateX(56px); }
+  92%, 100% { transform: translateX(0); }
+}
+@keyframes loader-pulse {
+  0%, 8% { transform: scale(1); }
+  42%, 58% { transform: scale(0.9); }
+  92%, 100% { transform: scale(1); }
+}
+/* Arah keluar berputar tiap fase, ganti arah saat lingkaran kecil tersembunyi di dalam. */
+@keyframes loader-orbit {
+  0%, 33.2% { transform: rotate(-20deg); }
+  33.4%, 66.5% { transform: rotate(100deg); }
+  66.7%, 100% { transform: rotate(220deg); }
+}
+/* Kecil berganti warna di tengah fase (saat terpisah). Utama ikut berganti saat menyatu. */
+@keyframes loader-small-color {
+  0%, 15% { fill: #ff5b14; }
+  18%, 48% { fill: #050a0e; }
+  51%, 81% { fill: #f2edea; }
+  84%, 100% { fill: #ff5b14; }
+}
+@keyframes loader-main-color {
+  0%, 25% { fill: #ff5b14; }
+  28%, 58% { fill: #050a0e; }
+  61%, 91% { fill: #f2edea; }
+  94%, 100% { fill: #ff5b14; }
+}
+
+.loader-name {
+  font-family: var(--font-display);
+  font-weight: 900;
+  text-transform: uppercase;
+  font-size: clamp(1.75rem, 6vw, 2.75rem);
+  line-height: 0.95;
+}
+.loader-meta { margin-top: 0.5rem; font-size: 0.875rem; color: #cfd3d6; }
+
+@media (prefers-reduced-motion: reduce) {
+  .loader-main, .loader-orbit, .loader-small { animation: none; }
+  .loader-main { fill: var(--accent); }
+  .loader-small { fill: var(--accent); }
+}

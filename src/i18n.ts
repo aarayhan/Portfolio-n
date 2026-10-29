@@ -1,0 +1,197 @@
+// Kamus teks antarmuka. Tambah kunci baru di kedua bahasa sekaligus.
+
+export const langs = ["id", "en"] as const;
+export type Lang = (typeof langs)[number];
+
+export function isLang(v: string): v is Lang {
+  return (langs as readonly string[]).includes(v);
+}
+
+const id = {
+  locale: "id-ID",
+  langName: "Bahasa Indonesia",
+  switchTo: "Switch to English",
+  nav: {
+    projects: "Proyek",
+    articles: "Artikel",
+    about: "Tentang",
+    certificates: "Sertifikat",
+    skills: "Keahlian",
+    contact: "Kontak",
+    home: "Beranda",
+    menu: "Menu",
+    close: "Tutup",
+    search: "Cari (Ctrl + K)",
+    mainNav: "Navigasi utama",
+  },
+  hero: {
+    basedIn: "Berbasis di",
+    localTime: "Waktu lokal",
+    cv: "Unduh CV",
+    seeProjects: "Lihat proyek",
+    photoAlt: "Foto",
+  },
+  projects: {
+    title: "Proyek",
+    intro: "Sistem dan web yang saya bangun, lengkap dengan proses pengerjaannya.",
+    seeAll: "Lihat semua proyek",
+    featured: "Proyek unggulan",
+    readCase: "Baca studi kasus",
+    caseOf: "Studi kasus",
+    openDemo: "Buka demo",
+    viewCode: "Lihat kode",
+    problem: "Masalah",
+    solution: "Solusi",
+    result: "Hasil",
+    screenshot: "Screenshot",
+    viewOf: "Tampilan",
+    allTitle: "Semua proyek",
+    allIntro: (n: number) => `${n} proyek. Klik salah satu untuk membaca masalah, proses, dan hasilnya.`,
+    role: "Peran",
+    year: "Tahun",
+    stack: "Stack",
+    prev: "Proyek sebelumnya",
+    next: "Proyek berikutnya",
+    other: "Proyek lain",
+  },
+  articles: {
+    title: "Artikel",
+    intro: "Catatan proses, pelajaran, dan kegiatan yang saya ikuti.",
+    seeAll: "Lihat semua artikel",
+    read: "Baca artikel",
+    minRead: "menit baca",
+    allTitle: "Semua artikel",
+    back: "Kembali ke semua artikel",
+  },
+  about: { label: "Tentang saya", education: "Pendidikan", experience: "Pengalaman" },
+  certificates: {
+    title: "Sertifikat",
+    intro: "Bukti kompetensi yang bisa dicek langsung ke penerbitnya.",
+    verify: "Verifikasi",
+  },
+  skills: { title: "Keahlian", intro: "Bahasa, framework, dan alat yang saya pakai." },
+  contact: {
+    line1: "Punya proyek?",
+    line2: "Ayo ngobrol.",
+    services: "Yang bisa saya kerjakan",
+    message: "Kirim pesan",
+    pdf: "Unduh PDF",
+    profile: "Buka profil",
+    top: "Kembali ke atas",
+  },
+  page: { backHome: "Kembali ke beranda", toc: "Daftar isi" },
+  code: { copy: "Salin", copied: "Tersalin" },
+  palette: {
+    placeholder: "Cari proyek, artikel, atau section",
+    search: "Cari",
+    dialog: "Cari halaman dan aksi",
+    pages: "Halaman",
+    actions: "Aksi",
+    copyEmail: "Salin email",
+    open: "Buka",
+    copied: "Tersalin",
+    empty: (q: string) => `Tidak ada yang cocok dengan "${q}". Coba kata lain, misalnya "proyek".`,
+    hintMove: "Panah atas dan bawah untuk memilih",
+    hintEnter: "Enter untuk membuka",
+  },
+};
+
+type Dict = typeof id;
+
+const en: Dict = {
+  locale: "en-US",
+  langName: "English",
+  switchTo: "Ganti ke Bahasa Indonesia",
+  nav: {
+    projects: "Projects",
+    articles: "Articles",
+    about: "About",
+    certificates: "Certificates",
+    skills: "Skills",
+    contact: "Contact",
+    home: "Home",
+    menu: "Menu",
+    close: "Close",
+    search: "Search (Ctrl + K)",
+    mainNav: "Main navigation",
+  },
+  hero: {
+    basedIn: "Based in",
+    localTime: "Local time",
+    cv: "Download CV",
+    seeProjects: "See projects",
+    photoAlt: "Photo of",
+  },
+  projects: {
+    title: "Projects",
+    intro: "Systems and websites I have built, with how each one was made.",
+    seeAll: "See all projects",
+    featured: "Featured project",
+    readCase: "Read case study",
+    caseOf: "Case study",
+    openDemo: "Open demo",
+    viewCode: "View code",
+    problem: "Problem",
+    solution: "Solution",
+    result: "Result",
+    screenshot: "Screenshot",
+    viewOf: "Screen of",
+    allTitle: "All projects",
+    allIntro: (n: number) => `${n} projects. Pick one to read the problem, the process, and the result.`,
+    role: "Role",
+    year: "Year",
+    stack: "Stack",
+    prev: "Previous project",
+    next: "Next project",
+    other: "Other projects",
+  },
+  articles: {
+    title: "Articles",
+    intro: "Notes on process, lessons, and events I have joined.",
+    seeAll: "See all articles",
+    read: "Read article",
+    minRead: "min read",
+    allTitle: "All articles",
+    back: "Back to all articles",
+  },
+  about: { label: "About me", education: "Education", experience: "Experience" },
+  certificates: {
+    title: "Certificates",
+    intro: "Proof of skills you can verify directly with the issuer.",
+    verify: "Verify",
+  },
+  skills: { title: "Skills", intro: "Languages, frameworks, and tools I use." },
+  contact: {
+    line1: "Got a project?",
+    line2: "Let's talk.",
+    services: "What I can do",
+    message: "Send a message",
+    pdf: "Download PDF",
+    profile: "Open profile",
+    top: "Back to top",
+  },
+  page: { backHome: "Back to home", toc: "Contents" },
+  code: { copy: "Copy", copied: "Copied" },
+  palette: {
+    placeholder: "Search projects, articles, or sections",
+    search: "Search",
+    dialog: "Search pages and actions",
+    pages: "Pages",
+    actions: "Actions",
+    copyEmail: "Copy email",
+    open: "Open",
+    copied: "Copied",
+    empty: (q: string) => `Nothing matches "${q}". Try another word, like "project".`,
+    hintMove: "Up and down arrows to choose",
+    hintEnter: "Enter to open",
+  },
+};
+
+export const dict: Record<Lang, Dict> = { id, en };
+export type { Dict };
+
+export function formatDate(iso: string, lang: Lang) {
+  return new Intl.DateTimeFormat(dict[lang].locale, { day: "numeric", month: "long", year: "numeric" }).format(
+    new Date(iso + "T00:00:00"),
+  );
+}
