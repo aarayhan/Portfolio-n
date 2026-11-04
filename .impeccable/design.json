@@ -1,0 +1,134 @@
+{
+  "schemaVersion": 2,
+  "generatedAt": "2026-11-04T00:00:00.000Z",
+  "title": "Design System: Raey Portfolio",
+  "extensions": {
+    "colorMeta": {
+      "ink": { "role": "neutral", "displayName": "Ink", "canonical": "#050a0e", "tonalRamp": ["#050a0e", "#0d1419", "#1f262c", "#363d43", "#555c62", "#7b8288", "#aab0b5", "#d4d7da"] },
+      "bone": { "role": "neutral", "displayName": "Bone", "canonical": "#f2edea", "tonalRamp": ["#8a8480", "#a8a29e", "#c4bebb", "#d9d2ce", "#e6e0dc", "#f2edea", "#f7f4f2", "#fcfbfa"] },
+      "signal-orange": { "role": "primary", "displayName": "Signal Orange", "canonical": "#ff5b14", "tonalRamp": ["#2b1004", "#5a2108", "#8f3509", "#c8470f", "#ff5b14", "#ff8a52", "#ffb994", "#ffe2d3"] },
+      "muted-on-ink": { "role": "neutral", "displayName": "Muted on Ink", "canonical": "#9aa2a9" },
+      "muted-on-bone": { "role": "neutral", "displayName": "Muted on Bone", "canonical": "#5d6368" },
+      "hairline-on-ink": { "role": "neutral", "displayName": "Hairline on Ink", "canonical": "#1f262c" },
+      "hairline-on-bone": { "role": "neutral", "displayName": "Hairline on Bone", "canonical": "#d9d2ce" },
+      "loader-stone": { "role": "neutral", "displayName": "Loader Stone", "canonical": "#464b4f" }
+    },
+    "typographyMeta": {
+      "display-hero": { "displayName": "Display Hero", "purpose": "The name in the hero, scaled by width and viewport height." },
+      "display-section": { "displayName": "Display Section", "purpose": "Section headings with a masked rise reveal." },
+      "display-title": { "displayName": "Display Title", "purpose": "Project and article titles." },
+      "body": { "displayName": "Body", "purpose": "Prose and lists." },
+      "lead": { "displayName": "Lead", "purpose": "Summaries and section intros." },
+      "label": { "displayName": "Label", "purpose": "Metadata, nav links and buttons." }
+    },
+    "shadows": [
+      { "name": "section-lift", "value": "0 -12px 40px rgba(5,10,14,0.12)", "purpose": "Projects section sliding over the sticky hero." },
+      { "name": "stack-card-lift", "value": "0 -24px 60px -40px rgba(0,0,0,0.45)", "purpose": "Sticky project cards cast upward onto the card behind." }
+    ],
+    "motion": [
+      { "name": "ease-rise", "value": "cubic-bezier(0.2, 0.8, 0.2, 1)", "purpose": "Headline rises, fades and mobile menu; 0.7s to 0.9s." },
+      { "name": "spring-lift", "value": "spring stiffness 300, damping 20", "purpose": "Card hover lift of 6px." },
+      { "name": "spring-pop", "value": "spring stiffness 260, damping 18", "purpose": "Skill chips popping in." },
+      { "name": "spring-cursor", "value": "spring stiffness 500, damping 40, mass 0.5", "purpose": "Custom cursor follow." }
+    ],
+    "breakpoints": [
+      { "name": "sm", "value": "640px" },
+      { "name": "md", "value": "768px" },
+      { "name": "lg", "value": "1024px" }
+    ]
+  },
+  "components": [
+    {
+      "name": "Primary Button",
+      "kind": "button",
+      "refersTo": "button-primary",
+      "description": "Ink pill for the main action on a bone surface.",
+      "html": "<a class=\"ds-btn-primary\" href=\"#\">See projects</a>",
+      "css": ".ds-btn-primary { display: inline-block; background: #050a0e; color: #f2edea; padding: 14px 24px; border-radius: 9999px; font-weight: 500; font-family: 'Inter Variable', system-ui, sans-serif; text-decoration: none; } .ds-btn-primary:focus-visible { outline: 2px solid currentColor; outline-offset: 4px; }"
+    },
+    {
+      "name": "Outline Button",
+      "kind": "button",
+      "refersTo": "button-outline",
+      "description": "Secondary pill with a 1px current-colour border.",
+      "html": "<a class=\"ds-btn-outline\" href=\"#\">Download CV</a>",
+      "css": ".ds-btn-outline { display: inline-block; border: 1px solid #050a0e; color: #050a0e; padding: 14px 24px; border-radius: 9999px; font-weight: 500; font-family: 'Inter Variable', system-ui, sans-serif; text-decoration: none; transition: background-color 0.2s; } .ds-btn-outline:hover { background: rgba(5,10,14,0.05); } .ds-btn-outline:focus-visible { outline: 2px solid currentColor; outline-offset: 4px; }"
+    },
+    {
+      "name": "Accent Pill",
+      "kind": "button",
+      "refersTo": "button-accent",
+      "description": "The orange CV button on the dark sticky nav.",
+      "html": "<a class=\"ds-btn-accent\" href=\"#\">CV</a>",
+      "css": ".ds-btn-accent { display: inline-block; background: #ff5b14; color: #050a0e; padding: 6px 16px; border-radius: 9999px; font-size: 14px; font-weight: 500; font-family: 'Inter Variable', system-ui, sans-serif; text-decoration: none; } .ds-btn-accent:focus-visible { outline: 2px solid currentColor; outline-offset: 4px; }"
+    },
+    {
+      "name": "Article Card",
+      "kind": "card",
+      "refersTo": "card-article",
+      "description": "Hairline-bordered card on ink with a Bebas Neue title.",
+      "html": "<a class=\"ds-card\" href=\"#\"><p class=\"ds-card-meta\">4 Nov 2026. 5 min read</p><h3 class=\"ds-card-title\">Notes from building my first system</h3><p class=\"ds-card-sum\">What broke, what I fixed.</p><span class=\"ds-card-read\">Read</span></a>",
+      "css": ".ds-card { display: flex; flex-direction: column; border: 1px solid #1f262c; border-radius: 16px; padding: 32px; background: #050a0e; color: #f2edea; text-decoration: none; transition: background-color 0.2s; max-width: 420px; } .ds-card:hover { background: rgba(255,255,255,0.03); } .ds-card:hover .ds-card-read { color: #ff5b14; } .ds-card-meta { font-size: 14px; color: #9aa2a9; margin: 0; font-family: 'Inter Variable', system-ui, sans-serif; } .ds-card-title { font-family: 'Bebas Neue', Impact, sans-serif; font-weight: 400; font-size: 36px; line-height: 0.95; text-transform: uppercase; margin: 16px 0 0; } .ds-card-sum { color: #9aa2a9; margin: 16px 0 0; font-family: 'Inter Variable', system-ui, sans-serif; } .ds-card-read { margin-top: 32px; font-size: 14px; font-weight: 500; font-family: 'Inter Variable', system-ui, sans-serif; } .ds-card:focus-visible { outline: 2px solid currentColor; outline-offset: 4px; }"
+    },
+    {
+      "name": "Sticky Nav",
+      "kind": "nav",
+      "refersTo": "button-accent",
+      "description": "Ink bar with Bebas Neue wordmark, muted links and the orange CV pill.",
+      "html": "<nav class=\"ds-nav\"><a class=\"ds-nav-logo\" href=\"#\">Rayhan<span>.</span></a><ul><li><a href=\"#\">Projects</a></li><li><a href=\"#\">About</a></li><li><a href=\"#\">Contact</a></li></ul><a class=\"ds-nav-cv\" href=\"#\">CV</a></nav>",
+      "css": ".ds-nav { display: flex; align-items: center; justify-content: space-between; gap: 16px; height: 56px; padding: 0 24px; background: rgba(5,10,14,0.9); border-bottom: 1px solid #1f262c; color: #f2edea; font-family: 'Inter Variable', system-ui, sans-serif; } .ds-nav ul { display: flex; gap: 28px; list-style: none; margin: 0; padding: 0; font-size: 14px; } .ds-nav ul a { color: rgba(242,237,234,0.75); text-decoration: none; transition: color 0.2s; } .ds-nav ul a:hover { color: #f2edea; } .ds-nav-logo { font-family: 'Bebas Neue', Impact, sans-serif; font-size: 24px; text-transform: uppercase; line-height: 1; color: #f2edea; text-decoration: none; } .ds-nav-logo span { color: #ff5b14; } .ds-nav-cv { background: #ff5b14; color: #050a0e; padding: 6px 16px; border-radius: 9999px; font-size: 14px; font-weight: 500; text-decoration: none; } .ds-nav a:focus-visible { outline: 2px solid currentColor; outline-offset: 4px; }"
+    },
+    {
+      "name": "Skill Chip",
+      "kind": "chip",
+      "refersTo": "card-article",
+      "description": "Hairline pill used for technologies on bone.",
+      "html": "<span class=\"ds-chip\">Laravel</span>",
+      "css": ".ds-chip { display: inline-flex; align-items: center; gap: 8px; border: 1px solid #d9d2ce; border-radius: 9999px; padding: 6px 14px 6px 12px; font-size: 14px; color: #050a0e; background: #f2edea; font-family: 'Inter Variable', system-ui, sans-serif; }"
+    },
+    {
+      "name": "Stat",
+      "kind": "custom",
+      "refersTo": "display-section",
+      "description": "Poster-scale number with a muted caption.",
+      "html": "<div class=\"ds-stat\"><div class=\"ds-stat-n\">400</div><div class=\"ds-stat-l\">automated tests across three projects</div></div>",
+      "css": ".ds-stat { background: #f2edea; color: #050a0e; padding: 16px; } .ds-stat-n { font-family: 'Bebas Neue', Impact, sans-serif; font-weight: 400; font-size: 96px; line-height: 1; } .ds-stat-l { margin-top: 8px; color: #5d6368; font-family: 'Inter Variable', system-ui, sans-serif; }"
+    }
+  ],
+  "narrative": {
+    "northStar": "The Workshop Poster",
+    "overview": "A printed shop poster for working systems: enormous condensed capitals on alternating slabs of ink and paper, with a single orange mark. The site does not decorate. It states who built what, in type big enough to read from across a room, and gets out of the way of the work.\n\nThe mood is confident and plain-spoken. Surfaces are flat, rules are hairlines, and the only colour that is not ink or paper is orange. Motion is present but obedient: headlines rise out of masks, cards settle, numbers count up. It shows work rather than performing.",
+    "keyCharacteristics": [
+      "Alternating ink (#050a0e) and bone (#f2edea) sections; orange used as a mark, never a surface for text.",
+      "Bebas Neue at poster scale for every heading; Inter for everything you actually read.",
+      "Flat at rest, hairline borders, pill buttons, large-radius cards.",
+      "Sections overlap: the hero is sticky and the next section slides over it.",
+      "Fully bilingual (ID/EN); type and layout must tolerate the longer string."
+    ],
+    "rules": [
+      { "name": "The One Mark Rule", "body": "Orange is the single chromatic colour. Its rarity is the point; it never fills a large area behind text and never appears twice in one visual cluster.", "section": "colors" },
+      { "name": "The Paper-and-Ink Rule", "body": "Sections alternate dark and light. A new section flips the tone of the one before it; two adjacent sections never share a background.", "section": "colors" },
+      { "name": "The Single Weight Rule", "body": "Bebas Neue has one weight. Markup may say font-black, but font-synthesis: none is set on purpose; never rely on faux bold.", "section": "typography" },
+      { "name": "The Caps-Only-Display Rule", "body": "Uppercase belongs to Bebas Neue. Inter is never set in capitals and never letterspaced.", "section": "typography" },
+      { "name": "The Upward Shadow Rule", "body": "The only shadows point up, onto the thing that is being covered. No drop shadows under content, no glow, no elevation on hover (hover lifts by translation, not shadow).", "section": "elevation" }
+    ],
+    "dos": [
+      "Do alternate ink and bone sections and keep orange to a single mark per cluster.",
+      "Do set every heading in Bebas Neue, uppercase, at line-height 0.8 to 0.95.",
+      "Do use hairline borders (#1f262c on ink, #d9d2ce on bone) instead of fills or shadows to separate content.",
+      "Do make pills for actions and 16px or 32px radii for containers.",
+      "Do use the shared easing cubic-bezier(0.2, 0.8, 0.2, 1) for rises and fades (0.7s to 0.9s), and springs for lift and pop.",
+      "Do respect reduced motion: cursor, loader animation and smooth scroll all switch off.",
+      "Do test every layout in both Indonesian and English and with missing thumbnails, live URLs and repo links."
+    ],
+    "donts": [
+      "Don't add gradients or glow. The only gradient in the system is the photo fade mask on small screens.",
+      "Don't introduce a second accent colour or a tinted neutral beyond the two greys.",
+      "Don't fake bold on Bebas Neue or letterspace Inter.",
+      "Don't put orange text on bone; use it as an underline or border there.",
+      "Don't drop shadows downward or add hover elevation.",
+      "Don't reach for a generic template look: purple-gradient SaaS hero, icon-in-a-circle feature cards, uniform card grids with no hierarchy.",
+      "Don't fabricate proof (clients, testimonials, metrics) to fill a layout; empty states say so plainly."
+    ]
+  }
+}
