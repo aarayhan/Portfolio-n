@@ -85,6 +85,7 @@ export async function getSite(lang: Lang) {
     cvUrl: t.cv_url || p.cv_url,
     hasArticles: p.show_articles !== false && articles.length > 0,
     photo: p.photo_url,
+    photoFrame: p.photo_frame === "framed" ? ("framed" as const) : ("none" as const),
     socials: p.socials,
     stats: p.stats.map((s) => ({ value: s.value, suffix: s.suffix, label: s.label[lang] })),
     availability: t.availability,

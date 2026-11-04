@@ -25,6 +25,7 @@ export type ProfileRow = {
   whatsapp: string;
   cv_url: string;
   photo_url: string | null;
+  photo_frame?: "none" | "framed"; // "framed" untuk foto yang punya latar, "none" untuk PNG tanpa latar
   socials: Social[];
   stats: Stat[];
   show_articles?: boolean; // saklar tampil/sembunyikan semua artikel

@@ -108,6 +108,8 @@ create table if not exists public.certificates (
 );
 -- Ditambah 30 Okt 2026: saklar tampil/sembunyikan semua artikel.
 alter table public.profile add column if not exists show_articles boolean not null default true;
+-- Ditambah 4 Nov 2026: bingkai foto hero. 'framed' untuk foto dengan latar, 'none' untuk PNG tanpa latar.
+alter table public.profile add column if not exists photo_frame text not null default 'none' check (photo_frame in ('none', 'framed'));
 -- Ditambah 29 Okt 2026: file sertifikat (gambar atau PDF) untuk penampil di web.
 alter table public.certificates add column if not exists file_url text;
 

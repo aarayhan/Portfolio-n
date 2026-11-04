@@ -166,6 +166,8 @@ Soft containers around hard type. Buttons, chips and the language switch are ful
 
 Images are cropped, not framed: thumbnails fill their card with `object-cover`, and the hero photo is masked with a fade on small screens only.
 
+The one exception is a hero photo that has its own background. It is chosen per photo in /admin ("Bingkai foto hero") and sits in an ink slab: 12px of Ink (`#050a0e`), 32px outer corners, 20px inner corners, no shadow, no mask, and it stays inside the hero instead of bleeding off the edge. A transparent cut-out PNG stays unframed.
+
 ## Components
 
 ### Buttons

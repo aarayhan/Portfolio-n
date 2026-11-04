@@ -21,54 +21,53 @@ export type CertificateView = {
 
 export type CertificateLabels = { verify: string; view: string; close: string; openNew: string };
 
-const isPdf = (url: string) => /\.pdf($|[?#])/i.test(url);
+export const isPdf = (url: string) => /\.pdf($|[?#])/i.test(url);
 
 export function CertificateCard({ c, labels }: { c: CertificateView; labels: CertificateLabels }) {
   const [open, setOpen] = useState(false);
   const meta = [c.issuer, c.year].filter(Boolean).join(", ");
   const hasVerify = Boolean(c.verifyUrl && c.verifyUrl !== "#");
 
+  // Slot gambar selalu ada supaya tinggi semua kartu sama. Menempel ke tepi atas kartu (bukan kotak di dalam kartu).
+  // object-contain: seluruh sertifikat terlihat, tidak dipotong. Tanpa file: slot kosong yang tenang.
   const body = (
     <>
-      {c.fileUrl && (
-        <div className="mb-5 grid aspect-[4/3] place-items-center overflow-hidden rounded-xl bg-white/5">
-          {isPdf(c.fileUrl) ? (
-            <span className="flex flex-col items-center gap-2 text-sm text-muted-dark">
-              <FileText className="size-8" aria-hidden />
-              PDF
-            </span>
-          ) : (
-            // eslint-disable-next-line @next/next/no-img-element
-            <img
-              src={c.fileUrl}
-              alt=""
-              loading="lazy"
-              className="size-full object-cover object-top transition-transform duration-500 group-hover:scale-[1.03]"
-            />
-          )}
-        </div>
-      )}
-      <p className="text-sm text-muted-dark">{meta}</p>
-      <h3 className="mt-3 font-display text-3xl font-bold uppercase leading-[0.95]">{c.title}</h3>
-      {c.id && <p className="mt-3 text-sm text-muted-dark">ID {c.id}</p>}
+      <div className="relative grid aspect-[1.414/1] place-items-center overflow-hidden border-b border-line-dark bg-white/5">
+        {!c.fileUrl ? (
+          <FileText className="size-8 text-muted-dark opacity-40" aria-hidden />
+        ) : isPdf(c.fileUrl) ? (
+          <span className="flex flex-col items-center gap-2 text-sm text-muted-dark">
+            <FileText className="size-8" aria-hidden />
+            PDF
+          </span>
+        ) : (
+          // eslint-disable-next-line @next/next/no-img-element
+          <img src={c.fileUrl} alt="" loading="lazy" className="absolute inset-0 size-full object-contain" />
+        )}
+      </div>
+      <div className="px-6 pt-6">
+        <p className="text-sm text-muted-dark">{meta}</p>
+        <h3 className="mt-3 font-display text-3xl font-bold uppercase leading-[0.95]">{c.title}</h3>
+        {c.id && <p className="mt-3 text-sm text-muted-dark">ID {c.id}</p>}
+      </div>
     </>
   );
 
   return (
-    <div className="flex h-full flex-col rounded-2xl border border-line-dark p-6">
+    <div className="flex h-full flex-col overflow-hidden rounded-2xl border border-line-dark">
       {c.fileUrl ? (
         <button
           type="button"
           onClick={() => setOpen(true)}
           aria-label={`${labels.view}: ${c.title}`}
-          className="group text-left"
+          className="block w-full text-left"
         >
           {body}
         </button>
       ) : (
         body
       )}
-      <div className="mt-auto flex flex-wrap gap-x-5 gap-y-2 pt-6 text-sm font-medium">
+      <div className="mt-auto flex flex-wrap gap-x-5 gap-y-2 px-6 pb-6 pt-6 text-sm font-medium">
         {c.fileUrl && (
           <button type="button" onClick={() => setOpen(true)} className="text-bone underline decoration-accent decoration-2 underline-offset-4">
             {labels.view}

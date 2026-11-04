@@ -5,6 +5,7 @@ import { ImagePlus, Plus, Trash2, Upload, X } from "lucide-react";
 import type { Lang } from "@/i18n";
 import { parseMarkdown } from "@/lib/markdown";
 import { SectionsView } from "@/components/blocks";
+import { isPdf } from "@/components/certificate-card";
 import { getBrowserClient } from "@/lib/supabase/browser";
 import type { Field, Row } from "./schema";
 
@@ -243,11 +244,12 @@ function UploadInput({
   return (
     <div className="grid gap-2">
       <div className="flex items-center gap-3">
-        {kind === "image" && (
+        {/* Kolom gambar selalu punya pratinjau. Kolom file (sertifikat) hanya kalau isinya gambar, bukan PDF. */}
+        {(kind === "image" || (value && !isPdf(value))) && (
           <div className="grid size-16 shrink-0 place-items-center overflow-hidden rounded-lg border border-line-light bg-white">
             {value ? (
               // eslint-disable-next-line @next/next/no-img-element
-              <img src={value} alt="" className="size-full object-cover" />
+              <img src={value} alt="" className={kind === "file" ? "size-full object-contain" : "size-full object-cover"} />
             ) : (
               <ImagePlus className="size-5 text-muted-light" aria-hidden />
             )}

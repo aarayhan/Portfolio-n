@@ -72,7 +72,17 @@ export const collections: Collection[] = [
       { path: "role", label: "Peran", type: "text", hint: "Contoh: Web developer" },
       { path: "hero_lead", label: "Hero: baris kecil", type: "text", hint: "Tampil kecil di atas nama besar" },
       { path: "hero_lines", label: "Hero: baris besar", type: "tags", hint: "Satu baris per item. Baris terakhir jadi link ke Tentang" },
-      { path: "photo_url", label: "Foto hero", type: "image", hint: "PNG tanpa latar, tinggi minimal 1400px" },
+      { path: "photo_url", label: "Foto hero", type: "image", hint: "PNG tanpa latar atau foto dengan latar, tinggi minimal 1400px" },
+      {
+        path: "photo_frame",
+        label: "Bingkai foto hero",
+        type: "select",
+        hint: "Pilih sesuai foto di atas. PNG tanpa latar menembus tepi hero, foto dengan latar perlu bingkai supaya rapi",
+        options: [
+          { value: "none", label: "Tanpa bingkai (foto tanpa latar)" },
+          { value: "framed", label: "Pakai bingkai (foto dengan latar)" },
+        ],
+      },
       { path: "city", label: "Kota", type: "text" },
       { path: "timezone", label: "Zona waktu", type: "text", hint: "Format IANA, contoh Asia/Jakarta" },
       { path: "email", label: "Email", type: "text" },

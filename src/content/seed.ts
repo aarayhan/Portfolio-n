@@ -10,7 +10,7 @@ export const seed: ContentBundle = {
     "id": 1,
     "name": "Muhammad Yahya Ar Rayhan",
     "nickname": "Raey",
-    "short_name": "Rayhan",
+    "short_name": "Array",
     "hero_lead": "Muhammad",
     "hero_lines": [
       "Yahya Ar",

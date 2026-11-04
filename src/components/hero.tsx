@@ -3,6 +3,7 @@
 import { useState } from "react";
 import { dict, type Lang } from "@/i18n";
 import { navItems } from "@/lib/site";
+import { cn } from "@/lib/utils";
 import type { Site } from "@/lib/content";
 import { LocalTime } from "@/components/local-time";
 import { AnimatePresence, EnterOnLoad, RiseLine, motion } from "@/components/motion";
@@ -13,18 +14,44 @@ export function Hero({ lang, site }: { lang: Lang; site: Site }) {
   const [menuOpen, setMenuOpen] = useState(false);
   const t = dict[lang];
   const nav = navItems(lang, t.nav, { articles: site.hasArticles });
+  // Foto dengan latar: kotak terbatas dalam bingkai tinta. Foto tanpa latar: menembus tepi hero seperti biasa.
+  const framed = Boolean(site.photo) && site.photoFrame === "framed";
 
   return (
     // Sticky: section berikutnya naik menutupi hero saat discroll.
-    <header className="sticky top-0 z-0 flex h-[100svh] min-h-[600px] flex-col overflow-hidden bg-bone text-black">
+    <header
+      className={cn(
+        "z-0 flex flex-col overflow-hidden bg-bone text-black",
+        framed
+          ? // Bingkai: di bawah lg tinggi hero mengikuti isi (tidak sticky) supaya foto tidak mengecil di layar pendek.
+            "relative min-h-[100svh] lg:sticky lg:top-0 lg:h-[100svh] lg:min-h-[600px]"
+          : "sticky top-0 h-[100svh] min-h-[600px]",
+      )}
+    >
       {/* Foto */}
-      <EnterOnLoad from="right" delay={0.15} className="absolute inset-x-0 top-14 h-[47%] [mask-image:linear-gradient(to_bottom,black_70%,transparent)] md:left-auto md:right-0 md:w-[58%] md:h-[56%] lg:inset-x-auto lg:right-0 lg:top-[9%] lg:h-[140%] lg:w-[48%] lg:[mask-image:none]">
+      <EnterOnLoad
+        from="right"
+        delay={0.15}
+        className={cn(
+          "absolute",
+          framed
+            ? // Di bawah lg: bagian alur (di antara menu dan nama) yang mengisi sisa tinggi, jadi tidak pernah menabrak nama.
+              "relative order-2 mx-4 mb-3 mt-3 min-h-[18rem] flex-1 rounded-[2rem] bg-black p-3 sm:mx-8 md:ml-auto md:w-[min(60%,28rem)] lg:absolute lg:inset-auto lg:right-8 lg:top-[12%] lg:m-0 lg:h-[76%] lg:min-h-0 lg:w-[40%] lg:flex-none"
+            : "inset-x-0 top-14 h-[47%] [mask-image:linear-gradient(to_bottom,black_70%,transparent)] md:left-auto md:right-0 md:w-[58%] md:h-[56%] lg:inset-x-auto lg:right-0 lg:top-[9%] lg:h-[140%] lg:w-[48%] lg:[mask-image:none]",
+        )}
+      >
         {site.photo ? (
           // eslint-disable-next-line @next/next/no-img-element
           <img
             src={site.photo}
             alt={`${t.hero.photoAlt} ${site.name}`}
-            className="h-full w-full object-cover object-top lg:object-contain"
+            className={cn(
+              "object-top",
+              framed
+                ? // Absolut: tinggi foto tidak ikut menentukan tinggi bingkai (ukuran bingkai murni dari layout flex).
+                  "absolute left-3 top-3 h-[calc(100%-1.5rem)] w-[calc(100%-1.5rem)] rounded-[1.25rem] object-cover"
+                : "h-full w-full object-cover lg:object-contain",
+            )}
           />
         ) : (
           <div className="grid h-full w-full place-items-center bg-black/10 text-sm text-black/60">
@@ -36,7 +63,7 @@ export function Hero({ lang, site }: { lang: Lang; site: Site }) {
       {/* Baris atas */}
       <nav
         aria-label={t.nav.mainNav}
-        className="relative z-10 flex items-start justify-between gap-4 px-4 pt-5 text-sm sm:px-8"
+        className="relative order-1 z-10 flex items-start justify-between gap-4 px-4 pt-5 text-sm sm:px-8"
       >
         <div className="grid gap-0.5">
           <span className="text-black/60">{t.hero.basedIn}</span>
@@ -99,7 +126,7 @@ export function Hero({ lang, site }: { lang: Lang; site: Site }) {
       {/* Nama */}
       <h1
         aria-label={site.name}
-        className="relative z-10 mt-auto self-start px-4 font-display font-black uppercase sm:px-8"
+        className="relative order-3 z-10 mt-auto self-start px-4 font-display font-black uppercase sm:px-8"
       >
         <RiseLine className="text-[clamp(1.75rem,4.5vw,4rem)] font-bold leading-none">
           {site.heroName.lead}
@@ -118,7 +145,7 @@ export function Hero({ lang, site }: { lang: Lang; site: Site }) {
 
       {/* Baris bawah */}
       {/* Di desktop lebar (lg) tombol pindah ke bawah teks di kiri, supaya tidak menumpuk di atas foto. */}
-      <div className="relative z-10 flex flex-col gap-5 px-4 pb-6 pt-6 sm:flex-row sm:items-end sm:justify-between sm:px-8 lg:flex-col lg:items-start lg:justify-start">
+      <div className="relative order-4 z-10 flex flex-col gap-5 px-4 pb-6 pt-6 sm:flex-row sm:items-end sm:justify-between sm:px-8 lg:flex-col lg:items-start lg:justify-start">
         <EnterOnLoad delay={0.5} className="max-w-sm">
           <p className="text-sm font-medium">
             {site.role}. {site.availability}.
@@ -126,6 +153,11 @@ export function Hero({ lang, site }: { lang: Lang; site: Site }) {
           <p className="mt-2 text-black/75">{site.intro}</p>
         </EnterOnLoad>
         <EnterOnLoad delay={0.6} className="flex flex-wrap gap-3 self-start sm:self-auto lg:self-start">
+          <Magnetic>
+            <a href="#kontak" className="block rounded-full bg-black px-6 py-3.5 font-medium text-bone">
+              {t.hero.contact}
+            </a>
+          </Magnetic>
           <Magnetic>
             <a
               href={site.cvUrl}
@@ -135,7 +167,10 @@ export function Hero({ lang, site }: { lang: Lang; site: Site }) {
             </a>
           </Magnetic>
           <Magnetic>
-            <a href="#proyek" className="block rounded-full bg-black px-6 py-3.5 font-medium text-bone">
+            <a
+              href="#proyek"
+              className="block rounded-full border border-black px-6 py-3.5 font-medium transition-colors hover:bg-black/5"
+            >
               {t.hero.seeProjects}
             </a>
           </Magnetic>
