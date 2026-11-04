@@ -84,8 +84,8 @@ export const seed: ContentBundle = {
         "Livewire",
         "Tailwind"
       ],
-      "year": "2026",
-      "thumbnail": null,
+      "year": "2026, beta",
+      "thumbnail": "/projects/maykos.webp",
       "live_url": null,
       "repo_url": null,
       "i18n": {
@@ -122,7 +122,7 @@ export const seed: ContentBundle = {
         "WhatsApp API"
       ],
       "year": "2026",
-      "thumbnail": null,
+      "thumbnail": "/projects/grandkos.webp",
       "live_url": null,
       "repo_url": null,
       "i18n": {
@@ -267,7 +267,7 @@ export const seed: ContentBundle = {
         "TMDB API"
       ],
       "year": "2026",
-      "thumbnail": null,
+      "thumbnail": "/projects/filmer.webp",
       "live_url": null,
       "repo_url": "https://github.com/aarayhan/filmer",
       "i18n": {
