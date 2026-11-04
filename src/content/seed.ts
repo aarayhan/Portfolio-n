@@ -159,7 +159,7 @@ export const seed: ContentBundle = {
         "Docker"
       ],
       "year": "2026",
-      "thumbnail": null,
+      "thumbnail": "/projects/paywind.webp",
       "live_url": null,
       "repo_url": "https://github.com/aarayhan/PayWind",
       "i18n": {
@@ -195,7 +195,7 @@ export const seed: ContentBundle = {
         "GitHub Actions"
       ],
       "year": "2026",
-      "thumbnail": null,
+      "thumbnail": "/projects/pomeloo.webp",
       "live_url": "https://pomeloo.netlify.app/",
       "repo_url": "https://github.com/aarayhan/PomeloO",
       "i18n": {
@@ -232,7 +232,7 @@ export const seed: ContentBundle = {
         "Google Books API"
       ],
       "year": "2026",
-      "thumbnail": null,
+      "thumbnail": "/projects/bibliotheca.webp",
       "live_url": null,
       "repo_url": "https://github.com/aarayhan/bibliotheca-Elibrary",
       "i18n": {
@@ -302,7 +302,7 @@ export const seed: ContentBundle = {
         "Tailwind"
       ],
       "year": "2026",
-      "thumbnail": null,
+      "thumbnail": "/projects/padviolett.webp",
       "live_url": null,
       "repo_url": "https://github.com/aarayhan/project-ecommerce",
       "i18n": {
@@ -337,7 +337,7 @@ export const seed: ContentBundle = {
         "Tailwind"
       ],
       "year": "2025",
-      "thumbnail": null,
+      "thumbnail": "/projects/trackify.webp",
       "live_url": null,
       "repo_url": "https://github.com/aarayhan/Productivity-Tracker",
       "i18n": {
